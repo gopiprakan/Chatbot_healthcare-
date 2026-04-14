@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Healthcare Assistant</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+
+    <div class="app-container">
+        <!-- Sidebar Backdrop for Mobile -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-notes-medical logo-icon"></i>
+                <span class="sidebar-title">HealthAssist AI</span>
+            </div>
+            
+            <ul class="nav-items">
+                <li class="nav-item active">
+                    <i class="fa-solid fa-comment-medical"></i>
+                    <span>Consultation</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    <span>Symptom Checker</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-apple-whole"></i>
+                    <span>Diet Plan</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span>Find Doctors</span>
+                </li>
+            </ul>
+            
+            <button class="nav-item theme-toggle" id="themeToggleBtn">
+                <i class="fa-solid fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </aside>
+        
+        <!-- Main Chat Interface -->
+        <main class="main-chat">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="header-start">
+                    <button class="hamburger-btn" id="hamburgerBtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="header-title-container">
+                        <h2>AI Healthcare Assistant</h2>
+                        <span class="header-subtitle"><span class="status-dot"></span> Online & Ready</span>
+                    </div>
+                </div>
+                <button class="clear-chat-btn" id="clearChatBtn">
+                    <i class="fa-solid fa-trash-can" style="margin-right: 5px;"></i> Clear
+                </button>
+            </header>
+            
+            <!-- Chat Messages Area -->
+            <div class="chat-container" id="chatContainer">
+                <!-- Initial Welcome Message -->
+                <div class="message-wrapper bot">
+                    <div class="message">
+                        Hello! 👋 I am your AI Healthcare Assistant. How can I help you today? Whether you need a symptom check, diet advice, or general health information, I'm here for you. <br><br>
+                        <em>Please note: I am an AI and my advice should not replace a professional medical diagnosis.</em>
+                    </div>
+                    <span class="timestamp">Just now</span>
+                </div>
+            </div>
+            
+            <!-- Input and Suggestions Area -->
+            <div class="input-section">
+                <!-- Quick Suggestions -->
+                <div class="suggestions" id="suggestions">
+                    <button class="suggestion-chip" onclick="handleSuggestion('I have a fever and headache.')">🤒 Fever</button>
+                    <button class="suggestion-chip" onclick="handleSuggestion('Remedies for common cold.')">🤧 Cold</button>
+                    <button class="suggestion-chip" onclick="handleSuggestion('Provide a healthy weight loss plan.')">🏃 Weight Loss</button>
+                    <button class="suggestion-chip" onclick="handleSuggestion('Suggest a healthy daily diet.')">🥗 Healthy Diet</button>
+                </div>
+                
+                <!-- Input Box -->
+                <div class="input-wrapper">
+                    <button class="input-btn" id="voiceBtn" title="Voice Input">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <input type="text" class="chat-input" id="messageInput" placeholder="Describe your symptoms or ask a health question..." autocomplete="off">
+                    <button class="input-btn send-btn" id="sendBtn" title="Send Message">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Link to external JS file -->
+    <script src="script.js"></script>
+</body>
+</html>
