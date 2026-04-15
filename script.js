@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto-scroll to bottom of chat
     function scrollToBottom() {
-        chatContainer.scrollTop = chatContainer.scrollHeight;
+        chatContainer.scrollTo({
+            top: chatContainer.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     // Function to append a message to the chat
@@ -35,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('message-wrapper', sender);
         
-        // For bot, check if HTML content (to support line breaks if any)
-        let formattedText = text;
+        // Sanitize and format text
+        let formattedText = typeof text === 'string' ? text : JSON.stringify(text);
+        formattedText = formattedText.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        
         // Basic markdown to html replacement (bold and line breaks)
-        formattedText = formattedText.replace(/\n/>g, '<br>');
+        formattedText = formattedText.replace(/\n/g, '<br>');
         formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         
         wrapper.innerHTML = `
@@ -118,14 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Auto-resize textarea
+    messageInput.addEventListener('input', function() {
+        this.style.height = 'auto'; // Reset height
+        this.style.height = (this.scrollHeight < 150 ? this.scrollHeight : 150) + 'px';
+        if (this.value === '') {
+            this.style.height = 'auto';
+        }
+    });
+
     // Event Listeners for sending message
     sendBtn.addEventListener('click', () => {
         sendMessage(messageInput.value);
+        messageInput.style.height = 'auto';
     });
 
-    messageInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             sendMessage(messageInput.value);
+            messageInput.style.height = 'auto';
         }
     });
 
