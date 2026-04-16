@@ -1,0 +1,18 @@
+{
+  "fever": {
+    "advice": "Drink plenty of fluids, take rest, and monitor temperature.",
+    "food": ["Warm soup", "Fruits", "Herbal tea"]
+  },
+  "cold": {
+    "advice": "Stay warm, drink hot fluids, and rest well.",
+    "food": ["Ginger tea", "Honey", "Soup"]
+  },
+  "body pain": {
+    "advice": "Take rest and do light stretching.",
+    "food": ["Milk", "Banana", "Protein-rich foods"]
+  },
+  "weight loss": {
+    "advice": "Maintain calorie deficit and exercise.",
+    "food": ["Oats", "Eggs", "Vegetables"]
+  }
+}
